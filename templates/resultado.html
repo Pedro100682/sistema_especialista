@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado da Avaliação</h1>
+        <p><strong>Tipo de risco identificado:</strong> {{ risco }}</p>
+        <h2>Recomendações:</h2>
+        <p>{{ recomendacao|safe }}</p>
+        <br><a href="/">Nova avaliação</a>
+    </div>
+</body>
+</html>

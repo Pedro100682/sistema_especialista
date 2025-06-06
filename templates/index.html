@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sistema Especialista - Avaliação de Riscos Climáticos</title>
+    <style>
+        body {
+            background-color: #eaf6ff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            background-color: #ffffff;
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            text-align: center;
+            color: #003366;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+            color: #003366;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 30px;
+            width: 100%;
+            padding: 12px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Sistema Especialista: Avaliação de Riscos Climáticos</h1>
+    <form method="POST" action="/avaliar">
+        <label>1. Está chovendo muito forte hoje ou nos três últimos dias?</label>
+        <select name="p1" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>2. Você viu/ouviu falar que o rio, arroio ou córrego da sua região está subindo ou transbordando?</label>
+        <select name="p2" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>3. Mesmo sem rio por perto, a sua rua já alagou quando chove muito?</label>
+        <select name="p3" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>4. A água da chuva acumula rápido na sua rua ou no seu quintal?</label>
+        <select name="p4" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>5. Está fazendo muito calor nos últimos dias?</label>
+        <select name="p5" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>6. Está ventando muito forte ou houve tempestade recente?</label>
+        <select name="p6" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>7. Está há muitos dias sem chover (mais de 30 dias) e a vegetação está secando?</label>
+        <select name="p7" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>8. Sua casa está próxima de rio, arroio, córrego ou barranco?</label>
+        <select name="p8" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>9. Sua casa está em área mais baixa do que as casas vizinhas?</label>
+        <select name="p9" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>10. Sua casa está localizada em morro ou encosta?</label>
+        <select name="p10" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>11. Há muita pavimentação (asfalto/concreto) e pouca vegetação na sua área de moradia?</label>
+        <select name="p11" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>12. Há pessoas com mobilidade reduzida na residência?</label>
+        <select name="p12" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>13. Há idosos, crianças pequenas ou pessoas com doenças na residência?</label>
+        <select name="p13" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>14. Você já recebeu algum aviso da Defesa Civil, prefeitura, rádio, TV ou celular sobre riscos climáticos?</label>
+        <select name="p14" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>15. Você e sua família sabem para onde ir em caso de emergência?</label>
+        <select name="p15" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <label>16. Você tem  uma mochila de emergência preparada com documentos, remédios e itens essenciais?</label>
+        <select name="p16" required>
+            <option value="" disabled selected>Selecione...</option>
+            <option>Sim</option>
+            <option>Não</option>
+        </select>
+
+        <button type="submit">Avaliar Risco</button>
+    </form>
+</div>
+</body>
+</html>
