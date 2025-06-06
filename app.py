@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import threading
 import webbrowser
 
-app = Flask(__name__)  # Definido antes do uso
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -11,30 +11,39 @@ def index():
 @app.route('/avaliar', methods=['POST'])
 def avaliar():
     # Captura das respostas
-    p1 = request.form['p1']  # Está chovendo muito forte hoje ou nos três últimos dias?
-    p2 = request.form['p2']  # Você viu/ouviu falar que o rio, arroio ou córrego da sua região está subindo ou transbordando?
-    p3 = request.form['p3']  # Mesmo sem rio por perto, a sua rua já alagou quando chove muito?
-    p4 = request.form['p4']  # A água da chuva acumula rápido na sua rua ou no seu quintal?
-    p5 = request.form['p5']  # Está fazendo muito calor nos últimos dias?
-    p6 = request.form['p6']  # Está ventando muito forte ou houve tempestade recente?
-    p7 = request.form['p7']  # Está há muitos dias sem chover (mais de 30 dias) e a vegetação está secando?
-    p8 = request.form['p8']  # Sua casa está próxima de rio, arroio, córrego ou barranco?
-    p9 = request.form['p9']  # Sua casa está em área mais baixa do que as casas vizinhas?
-    p10 = request.form['p10']  # Sua casa está localizada em morro ou encosta?
-    p11 = request.form['p11']  # Há muita pavimentação (asfalto/concreto) e pouca vegetação na sua área de moradia?
-    p12 = request.form['p12']  # Há pessoas com mobilidade reduzida na residência?
-    p13 = request.form['p13']  # Há idosos, crianças pequenas ou pessoas com doenças na residência?
-    p14 = request.form['p14']  # Você já recebeu algum aviso da Defesa Civil, prefeitura, rádio, TV ou celular sobre riscos climáticos?
-    p15 = request.form['p15']  # Você e sua família sabem para onde ir em caso de emergência?
-    p16 = request.form['p16']  # Você tem  uma mochila de emergência preparada com documentos, remédios e itens essenciais?
+    p1 = request.form['p1']
+    p2 = request.form['p2']
+    p3 = request.form['p3']
+    p4 = request.form['p4']
+    p5 = request.form['p5']
+    p6 = request.form['p6']
+    p7 = request.form['p7']
+    p8 = request.form['p8']
+    p9 = request.form['p9']
+    p10 = request.form['p10']
+    p11 = request.form['p11']
+    p12 = request.form['p12']
+    p13 = request.form['p13']
+    p14 = request.form['p14']
+    p15 = request.form['p15']
+    p16 = request.form['p16']
 
-     # Variáveis de contagem
+    # Variáveis de contagem
     risco_alto = 0
     risco_moderado = 0
     risco_leve = 0
 
-    # Lógica baseada na árvore e contexto
-    if p1 == 'Sim' and p2 == 'Sim' and p8 == 'Sim' and p9 == 'Sim':
+    # 🌟 Lógica especial para novas opções de resposta
+    if p2 == 'Não há rio por perto':
+        risco = "Nenhum risco hídrico direto"
+        recomendacao = """- Apesar da ausência de rios ou córregos por perto, monitore chuvas fortes.<br>
+                          - Continue atento a alagamentos e outros sinais de risco."""
+    elif p9 == 'Não sei':
+        risco = "Risco Potencial (incerteza sobre o relevo)"
+        recomendacao = """- É importante saber se sua casa está em área de risco.<br>
+                          - Reforce a preparação e monitore alertas oficiais."""
+    # 🌟 Regras principais
+    elif p1 == 'Sim' and p2 == 'Sim' and p8 == 'Sim' and p9 == 'Sim':
         risco = "Inundação Fluvial"
         risco_alto += 1
         recomendacao = """- Saia de casa antes da água subir e vá para um local seguro.<br>
@@ -71,7 +80,6 @@ def avaliar():
                           - Proteja plantas e animais.<br>
                           - Informe-se sobre rodízios de abastecimento."""
     else:
-        # Avaliação combinada com outras respostas
         vulnerabilidades = [p12, p13, p14]
         exposicao = [p3, p4, p9, p10, p11]
 
