@@ -46,11 +46,13 @@ def avaliar():
                               - Ajude vizinhos com dificuldades."""
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
-        elif p['p1'] == 'Sim' and p['p10'] == 'Sim' and p['p11'] == 'Sim':
+        elif (p1 == 'Sim' and p10 == 'Sim') or (p1 == 'Sim' and p9 == 'Sim' and 'encosta' in p9.lower()):
             risco = "Deslizamento de Terra"
-            recomendacao = """- Saia da casa se chover forte por horas.<br>
-                              - Evacue ao menor sinal de instabilidade.<br>
-                              - Vá para um abrigo seguro."""
+            risco_alto += 1
+            recomendacao = """- Saia da casa se chover forte por horas ou houver risco em encostas.<br>
+                      - Evacue ao menor sinal de rachaduras ou trincas no solo.<br>
+                      - Vá para um abrigo seguro imediatamente."""
+
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
         elif p['p6'] == 'Sim':
