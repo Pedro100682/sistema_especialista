@@ -4,14 +4,70 @@
     <meta charset="UTF-8">
     <title>Resultado</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #eaf6ff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            background-color: #ffffff;
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+        }
+        h1, h2 {
+            color: #003366;
+            text-align: center;
+        }
+        .alerta {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .alerta-verde { background-color: #4CAF50; }
+        .alerta-amarelo { background-color: #FFC107; color: #000; }
+        .alerta-laranja { background-color: #FF9800; }
+        .alerta-vermelho { background-color: #F44336; }
+        .alerta-roxo { background-color: #7B1FA2; }
+
+        p, a {
+            font-size: 1.1em;
+            color: #333;
+        }
+        a {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            color: #0077cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Resultado da Avaliação</h1>
+        
+        <div class="alerta alerta-{{ cor_alerta }}">
+            {{ texto_alerta }}
+        </div>
+
         <p><strong>Tipo de risco identificado:</strong> {{ risco }}</p>
+
         <h2>Recomendações:</h2>
         <p>{{ recomendacao|safe }}</p>
-        <br><a href="/">Nova avaliação</a>
+
+        <a href="/">Nova avaliação</a>
     </div>
 </body>
 </html>
