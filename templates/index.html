@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <title>Sistema Especialista - Avaliação de Riscos Climáticos</title>
+    <title>Sistema Especialista - Riscos Climáticos</title>
     <style>
         body {
             background-color: #eaf6ff;
@@ -10,228 +10,72 @@
             margin: 0;
             padding: 0;
         }
-        .header {
-            background-color: #003366;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-        .header img {
-            height: 60px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
         .container {
             max-width: 800px;
-            background-color: #ffffff;
-            padding: 30px;
-            margin: 20px auto;
+            margin: 50px auto;
+            background-color: #fff;
             border-radius: 12px;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
-        }
-        h1, h2 {
-            color: #003366;
+            padding: 30px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        p, ul {
+        h1 {
+            color: #003366;
+        }
+        p {
             font-size: 18px;
+            color: #333;
             line-height: 1.6;
         }
         img {
-            display: block;
-            margin: 10px auto;
             max-width: 100%;
-            border-radius: 6px;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
         }
-        label {
-            display: block;
-            margin-top: 20px;
-            color: #003366;
+        ul {
+            text-align: left;
+            padding-left: 20px;
         }
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+        li {
             font-size: 16px;
+            margin-bottom: 8px;
         }
-        button {
+        .btn {
+            display: inline-block;
             margin-top: 30px;
-            width: 100%;
-            padding: 12px;
+            padding: 12px 24px;
             background-color: #0077cc;
             color: white;
-            border: none;
+            text-decoration: none;
             border-radius: 6px;
             font-size: 18px;
-            cursor: pointer;
         }
-        button:hover {
+        .btn:hover {
             background-color: #005fa3;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logo do Sistema" style="max-width: 120px;">
+        <h1>Sistema Especialista de Avaliação de Riscos Climáticos</h1>
+        <img src="{{ url_for('static', filename='imagens/capa.jpg') }}" alt="Imagem ilustrativa do clima extremo">
+        
+        <p>Este sistema foi desenvolvido para ajudar a identificar <strong>situações de risco climático</strong> com base em perguntas simples e imagens explicativas. Ele pode ser usado por qualquer pessoa para avaliar a sua situação atual e receber orientações importantes.</p>
 
-<div class="header">
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo do Sistema">
-    <span><strong>Sistema Especialista em Riscos Climáticos</strong></span>
-</div>
+        <p><strong>Riscos climáticos avaliados:</strong></p>
+        <ul>
+            <li>🌊 Inundação Fluvial</li>
+            <li>🚧 Inundação Pluvial</li>
+            <li>⛰️ Deslizamento de Terra</li>
+            <li>🌪️ Tempestade com Ventos Fortes</li>
+            <li>🔥 Onda de Calor</li>
+            <li>🌵 Seca Prolongada</li>
+            <li>✅ Nenhum risco imediato</li>
+        </ul>
 
-<div class="container">
-    <h1>Bem-vindo!</h1>
-    <p>Este sistema ajuda você a identificar riscos climáticos como enchentes, deslizamentos, secas e tempestades com base em perguntas simples.</p>
-
-    <img src="{{ url_for('static', filename='imagem_capa.jpg') }}" alt="Imagem ilustrativa sobre riscos climáticos">
-
-    <h2>Riscos Climáticos Avaliados:</h2>
-    <ul>
-        <li>🌊 Inundação Fluvial</li>
-        <li>🌧️ Inundação Pluvial</li>
-        <li>🏔️ Deslizamento de Terra</li>
-        <li>🌪️ Tempestade com Ventos Fortes</li>
-        <li>🔥 Onda de Calor</li>
-        <li>☀️ Seca Prolongada</li>
-        <li>✅ Nenhum risco imediato</li>
-    </ul>
-
-    <h2>Responda às perguntas abaixo:</h2>
-    <form method="POST" action="/avaliar">
-
-        <label>1. Está chovendo muito forte hoje ou nos três últimos dias?</label>
-        <img src="{{ url_for('static', filename='imagens/1-chuva_forte.jpg') }}" alt="Imagem 1">
-        <select name="p1" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>2. Você viu/ouviu falar que o rio, arroio ou córrego da sua região está subindo ou transbordando?</label>
-        <img src="{{ url_for('static', filename='imagens/2-rio_transbordando.jpg') }}" alt="Imagem 2">
-        <select name="p2" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-            <option>Não há rio por perto</option>
-        </select>
-
-        <label>3. Mesmo sem rio por perto, a sua rua já alagou quando chove muito?</label>
-        <img src="{{ url_for('static', filename='imagens/3-rua_alagada.jpg') }}" alt="Imagem 3">
-        <select name="p3" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>4. A água da chuva acumula rápido na sua rua ou no seu quintal?</label>
-        <img src="{{ url_for('static', filename='imagens/4-agua_acumulada_quintal.jpg') }}" alt="Imagem 4">
-        <select name="p4" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>5. Está fazendo muito calor nos últimos dias?</label>
-        <img src="{{ url_for('static', filename='imagens/5-calor_extremo.jpg') }}" alt="Imagem 5">
-        <select name="p5" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>6. Está ventando muito forte ou houve tempestade recente?</label>
-        <img src="{{ url_for('static', filename='imagens/6-vento_forte.jpg') }}" alt="Imagem 6">
-        <select name="p6" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>7. Está há muitos dias sem chover (mais de 30 dias) e a vegetação está secando?</label>
-        <img src="{{ url_for('static', filename='imagens/7-seca_plantacao.jpg') }}" alt="Imagem 7">
-        <select name="p7" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>8. Sua casa está próxima de rio, arroio, córrego ou barranco?</label>
-        <img src="{{ url_for('static', filename='imagens/8-casa_barranco.jpg') }}" alt="Imagem 8">
-        <select name="p8" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>9. Sua casa está em área mais baixa do que as casas vizinhas?</label>
-        <img src="{{ url_for('static', filename='imagens/9-casa_baixa.jpg') }}" alt="Imagem 9">
-        <select name="p9" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-            <option>Não sei</option>
-        </select>
-
-        <label>10. Sua casa está localizada em morro ou encosta?</label>
-        <img src="{{ url_for('static', filename='imagens/10-casa_morro.jpg') }}" alt="Imagem 10">
-        <select name="p10" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>11. Há muita pavimentação (asfalto/concreto) e pouca vegetação na sua área de moradia?</label>
-        <img src="{{ url_for('static', filename='imagens/11-muita_pavimentacao.jpg') }}" alt="Imagem 11">
-        <select name="p11" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>12. Há pessoas com mobilidade reduzida na residência?</label>
-        <img src="{{ url_for('static', filename='imagens/12-pessoas_mobilidade.jpg') }}" alt="Imagem 12">
-        <select name="p12" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>13. Há idosos, crianças pequenas ou pessoas com doenças na residência?</label>
-        <img src="{{ url_for('static', filename='imagens/13-idoso_crianca_doente.jpg') }}" alt="Imagem 13">
-        <select name="p13" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>14. Você já recebeu algum aviso da Defesa Civil, prefeitura, rádio, TV ou celular sobre riscos climáticos?</label>
-        <img src="{{ url_for('static', filename='imagens/14-aviso_defesa_civil.jpg') }}" alt="Imagem 14">
-        <select name="p14" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>15. Você e sua família sabem para onde ir em caso de emergência?</label>
-        <img src="{{ url_for('static', filename='imagens/15-grafico.jpg') }}" alt="Imagem 15">
-        <select name="p15" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <label>16. Você tem uma mochila de emergência preparada com documentos, remédios e itens essenciais?</label>
-        <img src="{{ url_for('static', filename='imagens/16-mochila.jpg') }}" alt="Imagem 16">
-        <select name="p16" required>
-            <option value="" disabled selected>Selecione...</option>
-            <option>Sim</option>
-            <option>Não</option>
-        </select>
-
-        <button type="submit">Avaliar Risco</button>
-    </form>
-</div>
-
+        <a class="btn" href="{{ url_for('perguntas') }}">Responder perguntas</a>
+    </div>
 </body>
 </html>
