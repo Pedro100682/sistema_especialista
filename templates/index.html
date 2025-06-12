@@ -10,28 +10,43 @@
             margin: 0;
             padding: 0;
         }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .header img {
+            height: 60px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
         .container {
-            max-width: 700px;
+            max-width: 800px;
             background-color: #ffffff;
             padding: 30px;
-            margin: 50px auto;
+            margin: 20px auto;
             border-radius: 12px;
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
         }
-        h1 {
+        h1, h2 {
+            color: #003366;
             text-align: center;
-            color: #003366;
         }
-        label {
-            display: block;
-            margin-top: 20px;
-            color: #003366;
+        p, ul {
+            font-size: 18px;
+            line-height: 1.6;
         }
         img {
             display: block;
             margin: 10px auto;
             max-width: 100%;
             border-radius: 6px;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+            color: #003366;
         }
         select {
             width: 100%;
@@ -58,8 +73,30 @@
     </style>
 </head>
 <body>
+
+<div class="header">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo do Sistema">
+    <span><strong>Sistema Especialista em Riscos Climáticos</strong></span>
+</div>
+
 <div class="container">
-    <h1>Sistema Especialista: Avaliação de Riscos Climáticos</h1>
+    <h1>Bem-vindo!</h1>
+    <p>Este sistema ajuda você a identificar riscos climáticos como enchentes, deslizamentos, secas e tempestades com base em perguntas simples.</p>
+
+    <img src="{{ url_for('static', filename='imagem_capa.jpg') }}" alt="Imagem ilustrativa sobre riscos climáticos">
+
+    <h2>Riscos Climáticos Avaliados:</h2>
+    <ul>
+        <li>🌊 Inundação Fluvial</li>
+        <li>🌧️ Inundação Pluvial</li>
+        <li>🏔️ Deslizamento de Terra</li>
+        <li>🌪️ Tempestade com Ventos Fortes</li>
+        <li>🔥 Onda de Calor</li>
+        <li>☀️ Seca Prolongada</li>
+        <li>✅ Nenhum risco imediato</li>
+    </ul>
+
+    <h2>Responda às perguntas abaixo:</h2>
     <form method="POST" action="/avaliar">
 
         <label>1. Está chovendo muito forte hoje ou nos três últimos dias?</label>
@@ -195,5 +232,6 @@
         <button type="submit">Avaliar Risco</button>
     </form>
 </div>
+
 </body>
 </html>
