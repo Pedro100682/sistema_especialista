@@ -6,32 +6,29 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('perguntas.html')
 
 @app.route('/avaliar', methods=['POST'])
 def avaliar():
     try:
-        # Captura das respostas
-        p = {f'p{i}': request.form[f'p{i}'] for i in range(1, 17)}
+        # Captura das respostas do formulário (17 perguntas)
+        p = {f'p{i}': request.form.get(f'p{i}', '') for i in range(1, 18)}
 
-        # Variáveis de contagem
-        risco_alto = 0
-        risco_moderado = 0
-        risco_leve = 0
-
-        # Análise e definição de risco, recomendação, cor e texto do alerta
+        # Regras de decisão para avaliação de risco
         if p['p2'] == 'Não há rio por perto':
             risco = "Nenhum risco hídrico direto"
             recomendacao = """- Apesar da ausência de rios ou córregos por perto, monitore chuvas fortes.<br>
                               - Continue atento a alagamentos e outros sinais de risco."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
+
         elif p['p9'] == 'Não sei':
             risco = "Risco Potencial (incerteza sobre o relevo)"
             recomendacao = """- É importante saber se sua casa está em área de risco.<br>
                               - Reforce a preparação e monitore alertas oficiais."""
             cor_alerta = "laranja"
             texto_alerta = "ALERTA ALTO: Esteja preparado"
+
         elif p['p1'] == 'Sim' and p['p2'] == 'Sim' and p['p8'] == 'Sim' and p['p9'] == 'Sim':
             risco = "Inundação Fluvial"
             recomendacao = """- Saia de casa antes da água subir e vá para um local seguro.<br>
@@ -39,6 +36,7 @@ def avaliar():
                               - Não tente atravessar áreas alagadas."""
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
+
         elif p['p1'] == 'Sim' and p['p3'] == 'Sim' and p['p4'] == 'Sim' and p['p11'] == 'Sim':
             risco = "Inundação Pluvial"
             recomendacao = """- Saia imediatamente se sua rua costuma alagar.<br>
@@ -46,15 +44,15 @@ def avaliar():
                               - Ajude vizinhos com dificuldades."""
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
-        elif (p1 == 'Sim' and p10 == 'Sim') or (p1 == 'Sim' and p9 == 'Sim' and 'encosta' in p9.lower()):
-            risco = "Deslizamento de Terra"
-            risco_alto += 1
-            recomendacao = """- Saia da casa se chover forte por horas ou houver risco em encostas.<br>
-                      - Evacue ao menor sinal de rachaduras ou trincas no solo.<br>
-                      - Vá para um abrigo seguro imediatamente."""
 
+        elif (p['p1'] == 'Sim' and p['p10'] == 'Sim') or (p['p1'] == 'Sim' and p['p9'] == 'Sim' and 'encosta' in p['p9'].lower()):
+            risco = "Deslizamento de Terra"
+            recomendacao = """- Saia da casa se chover forte por horas ou houver risco em encostas.<br>
+                              - Evacue ao menor sinal de rachaduras ou trincas no solo.<br>
+                              - Vá para um abrigo seguro imediatamente."""
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
+
         elif p['p6'] == 'Sim':
             risco = "Tempestade com Ventos Fortes"
             recomendacao = """- Fique longe de árvores, postes e janelas.<br>
@@ -62,6 +60,7 @@ def avaliar():
                               - Busque abrigo seguro."""
             cor_alerta = "laranja"
             texto_alerta = "ALERTA ALTO: Esteja preparado"
+
         elif p['p5'] == 'Sim' and p['p13'] == 'Sim':
             risco = "Onda de Calor"
             recomendacao = """- Beba muita água.<br>
@@ -69,6 +68,7 @@ def avaliar():
                               - Cuide especialmente de idosos e crianças."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
+
         elif p['p7'] == 'Sim' and p['p11'] == 'Sim':
             risco = "Seca Prolongada"
             recomendacao = """- Economize água.<br>
@@ -76,6 +76,7 @@ def avaliar():
                               - Informe-se sobre rodízios de abastecimento."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
+
         elif [p['p12'], p['p13'], p['p14']].count("Sim") >= 2:
             risco = "Risco Leve (pessoas vulneráveis)"
             recomendacao = """- Tenha um plano de evacuação.<br>
@@ -83,12 +84,14 @@ def avaliar():
                               - Fique atento aos alertas oficiais."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
+
         elif p['p14'] == 'Sim' and p['p15'] == 'Sim':
             risco = "Risco Leve (alerta recebido)"
             recomendacao = """- Reforce os cuidados com moradores vulneráveis.<br>
                               - Revise seus planos de emergência."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
+
         else:
             risco = "Nenhum risco imediato"
             recomendacao = """- Mantenha-se atento às previsões do tempo.<br>
