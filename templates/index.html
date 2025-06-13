@@ -13,13 +13,17 @@
         .header {
             background-color: #003366;
             color: white;
-            padding: 20px;
+            padding: 30px 20px 20px 20px;
             text-align: center;
         }
         .header img {
-            height: 60px;
-            vertical-align: middle;
-            margin-right: 10px;
+            height: 80px;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .header h1 {
+            font-size: 20px;
+            margin: 0;
         }
         .container {
             max-width: 800px;
@@ -57,9 +61,8 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logo" style="height: 60px; vertical-align: middle; margin-right: 10px;">
-        <strong>Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas</strong>
-
+        <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logo">
+        <h1>Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas</h1>
     </div>
 
     <div class="container">
