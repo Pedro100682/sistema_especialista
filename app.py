@@ -6,7 +6,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/perguntas')
+def perguntas():
     return render_template('perguntas.html')
+
 
 @app.route('/avaliar', methods=['POST'])
 def avaliar():

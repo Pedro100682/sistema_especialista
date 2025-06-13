@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <title>Sistema Especialista - Riscos Climáticos</title>
+    <title>Início - Sistema Especialista em Riscos Climáticos</title>
     <style>
         body {
             background-color: #eaf6ff;
@@ -10,13 +10,24 @@
             margin: 0;
             padding: 0;
         }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            height: 60px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
         .container {
             max-width: 800px;
-            margin: 50px auto;
-            background-color: #fff;
-            border-radius: 12px;
+            background-color: #ffffff;
             padding: 30px;
-            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
             text-align: center;
         }
         h1 {
@@ -24,58 +35,37 @@
         }
         p {
             font-size: 18px;
-            color: #333;
             line-height: 1.6;
+            color: #333;
         }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-        ul {
-            text-align: left;
-            padding-left: 20px;
-        }
-        li {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-        .btn {
-            display: inline-block;
+        .start-btn {
             margin-top: 30px;
-            padding: 12px 24px;
+            padding: 15px 30px;
             background-color: #0077cc;
             color: white;
-            text-decoration: none;
-            border-radius: 6px;
+            border: none;
+            border-radius: 8px;
             font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
-        .btn:hover {
+        .start-btn:hover {
             background-color: #005fa3;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo do Sistema">
+        <span><strong>Sistema Especialista em Riscos Climáticos</strong></span>
+    </div>
+
     <div class="container">
-        <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logo do Sistema" style="max-width: 120px;">
-        <h1>Sistema Especialista de Avaliação de Riscos Climáticos</h1>
-        <img src="{{ url_for('static', filename='imagens/capa.jpg') }}" alt="Imagem ilustrativa do clima extremo">
-        
-        <p>Este sistema foi desenvolvido para ajudar a identificar <strong>situações de risco climático</strong> com base em perguntas simples e imagens explicativas. Ele pode ser usado por qualquer pessoa para avaliar a sua situação atual e receber orientações importantes.</p>
-
-        <p><strong>Riscos climáticos avaliados:</strong></p>
-        <ul>
-            <li>🌊 Inundação Fluvial</li>
-            <li>🚧 Inundação Pluvial</li>
-            <li>⛰️ Deslizamento de Terra</li>
-            <li>🌪️ Tempestade com Ventos Fortes</li>
-            <li>🔥 Onda de Calor</li>
-            <li>🌵 Seca Prolongada</li>
-            <li>✅ Nenhum risco imediato</li>
-        </ul>
-
-        <a class="btn" href="{{ url_for('perguntas') }}">Responder perguntas</a>
+        <h1>Bem-vindo ao Sistema Especialista</h1>
+        <p>Este sistema ajuda você a identificar possíveis riscos climáticos, como enchentes, deslizamentos e secas, por meio de perguntas simples.</p>
+        <p>Você receberá orientações baseadas nas suas respostas, com foco na sua segurança e preparação.</p>
+        <a href="{{ url_for('perguntas') }}" class="start-btn">Iniciar Avaliação</a>
     </div>
 </body>
 </html>
