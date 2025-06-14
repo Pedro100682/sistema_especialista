@@ -5,7 +5,7 @@
     <title>Início - Sistema Especialista</title>
     <style>
         body {
-            background-color: #0000;
+            background-color: #eaf6ff;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -13,17 +13,17 @@
         .header {
             background-color: #b3d9ff;
             color: black;
-            padding: 30px 20px 20px 20px;
+            padding: 20px;
             text-align: center;
         }
         .header img {
-            height: 250px;
+            height: 160px;
             display: block;
             margin: 0 auto 10px auto;
         }
-        .header h1 {
-            font-size: 22px;
-            margin: 0;
+        .header .titulo {
+            font-size: 20px;
+            font-weight: bold;
         }
         .container {
             max-width: 800px;
@@ -64,7 +64,6 @@
         <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo do Sistema">
         <div class="titulo">Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas</div>
     </div>
-
 
     <div class="container">
         <h1>Bem-vindo ao Sistema Especialista</h1>
