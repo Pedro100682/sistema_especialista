@@ -81,10 +81,9 @@
     <h2>Recomendações:</h2>
     <p>{{ recomendacao|safe }}</p>
 
-    <!-- Bloco visual conforme o tipo de risco -->
     {% if risco == "Inundação Fluvial" or risco == "Inundação Pluvial" %}
         <div class="bloco-risco">
-            <h2>🌊 O que fazer em caso de {{ risco }}</h2>
+            <h2>O que fazer em caso de {{ risco }}</h2>
             <img src="{{ url_for('static', filename='imagens/info-inundacao.png') }}" alt="Imagem Inundação">
             <ul>
                 <li>Saia imediatamente para local seguro e mais alto.</li>
@@ -95,7 +94,7 @@
         </div>
     {% elif risco == "Deslizamento de Terra" %}
         <div class="bloco-risco">
-            <h2>🧱 O que fazer em caso de Deslizamento</h2>
+            <h2>O que fazer em caso de Deslizamento</h2>
             <img src="{{ url_for('static', filename='imagens/info-deslizamento.png') }}" alt="Imagem Deslizamento">
             <ul>
                 <li>Evacue ao menor sinal de trincas no solo ou muros.</li>
@@ -105,7 +104,7 @@
         </div>
     {% elif risco == "Tempestade com Ventos Fortes" %}
         <div class="bloco-risco">
-            <h2>🌪️ O que fazer em caso de Tempestade</h2>
+            <h2>O que fazer em caso de Tempestade</h2>
             <img src="{{ url_for('static', filename='imagens/info-tempestade.png') }}" alt="Imagem Tempestade">
             <ul>
                 <li>Permaneça em local fechado, longe de janelas e árvores.</li>
@@ -115,7 +114,7 @@
         </div>
     {% elif risco == "Onda de Calor" %}
         <div class="bloco-risco">
-            <h2>🌡️ O que fazer em caso de Onda de Calor</h2>
+            <h2>O que fazer em caso de Onda de Calor</h2>
             <img src="{{ url_for('static', filename='imagens/info-calor.png') }}" alt="Imagem Onda de Calor">
             <ul>
                 <li>Beba água com frequência.</li>
@@ -126,7 +125,7 @@
         </div>
     {% elif risco == "Seca Prolongada" %}
         <div class="bloco-risco">
-            <h2>☀️ O que fazer em caso de Seca</h2>
+            <h2>O que fazer em caso de Seca</h2>
             <img src="{{ url_for('static', filename='imagens/info-seca.png') }}" alt="Imagem Seca">
             <ul>
                 <li>Evite o desperdício de água.</li>
