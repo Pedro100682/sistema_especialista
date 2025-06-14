@@ -2,8 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Resultado</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Resultado da Avaliação</title>
     <style>
         body {
             background-color: #eaf6ff;
@@ -12,7 +11,7 @@
             padding: 0;
         }
         .container {
-            max-width: 700px;
+            max-width: 800px;
             background-color: #ffffff;
             padding: 30px;
             margin: 50px auto;
@@ -36,8 +35,23 @@
         .alerta-amarelo { background-color: #FFC107; color: #000; }
         .alerta-laranja { background-color: #FF9800; }
         .alerta-vermelho { background-color: #F44336; }
-        .alerta-roxo { background-color: #7B1FA2; }
 
+        .bloco-risco {
+            margin-top: 40px;
+        }
+        .bloco-risco img {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+        .bloco-risco ul {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+            padding-left: 20px;
+        }
         p, a {
             font-size: 1.1em;
             color: #333;
@@ -52,102 +66,78 @@
         a:hover {
             text-decoration: underline;
         }
-
-        .bloco-extra {
-            background-color: #f0f8ff;
-            margin-top: 50px;
-            padding: 30px;
-            border-radius: 12px;
-        }
-
-        .bloco-extra h3 {
-            color: #003366;
-            margin-top: 30px;
-        }
-
-        .bloco-extra img {
-            width: 100%;
-            max-width: 600px;
-            margin: 15px 0;
-            border-radius: 8px;
-        }
-
-        .bloco-extra ul {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-            padding-left: 20px;
-        }
-
-        .bloco-extra p {
-            font-size: 14px;
-            color: #555;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Resultado da Avaliação</h1>
+<div class="container">
+    <h1>Resultado da Avaliação</h1>
 
-        <div class="alerta alerta-{{ cor_alerta }}">
-            {{ texto_alerta }}
-        </div>
+    <div class="alerta alerta-{{ cor_alerta }}">
+        {{ texto_alerta }}
+    </div>
 
-        <p><strong>Tipo de risco identificado:</strong> {{ risco }}</p>
+    <p style="text-align:center;"><strong>Tipo de risco identificado:</strong> {{ risco }}</p>
 
-        <h2>Recomendações:</h2>
-        <p>{{ recomendacao|safe }}</p>
+    <h2>Recomendações:</h2>
+    <p>{{ recomendacao|safe }}</p>
 
-        <div class="bloco-extra">
-            <h2>📚 Ações Complementares por Tipo de Risco</h2>
-            <p>Veja abaixo dicas práticas e materiais de apoio para se preparar e agir em situações de risco climático:</p>
-
-            <h3>🌊 Inundação</h3>
-            <img src="{{ url_for('static', filename='imagens/info-inundacao.png') }}" alt="Inundação">
+    <!-- Bloco visual conforme o tipo de risco -->
+    {% if risco == "Inundação Fluvial" or risco == "Inundação Pluvial" %}
+        <div class="bloco-risco">
+            <h2>🌊 O que fazer em caso de {{ risco }}</h2>
+            <img src="{{ url_for('static', filename='imagens/info-inundacao.png') }}" alt="Imagem Inundação">
             <ul>
-                <li>Evacue para áreas seguras e altas.</li>
-                <li>Leve documentos, água, remédios e mochila de emergência.</li>
-                <li>Não atravesse ruas alagadas.</li>
+                <li>Saia imediatamente para local seguro e mais alto.</li>
+                <li>Leve apenas itens essenciais e documentos.</li>
+                <li>Evite andar ou dirigir por áreas alagadas.</li>
             </ul>
             <p><strong>Fonte:</strong> Anexo Riscos Climáticos, p. 33–34</p>
-
-            <h3>🧱 Deslizamento de Terra</h3>
-            <img src="{{ url_for('static', filename='imagens/info-deslizamento.png') }}" alt="Deslizamento">
+        </div>
+    {% elif risco == "Deslizamento de Terra" %}
+        <div class="bloco-risco">
+            <h2>🧱 O que fazer em caso de Deslizamento</h2>
+            <img src="{{ url_for('static', filename='imagens/info-deslizamento.png') }}" alt="Imagem Deslizamento">
             <ul>
-                <li>Evacue casas em encostas ao notar rachaduras no solo.</li>
-                <li>Evite permanecer em barrancos instáveis após chuva.</li>
+                <li>Evacue ao menor sinal de trincas no solo ou muros.</li>
+                <li>Evite permanecer em encostas após chuvas fortes.</li>
             </ul>
             <p><strong>Fonte:</strong> ARVC POA, p. 60</p>
-
-            <h3>🌡️ Onda de Calor</h3>
-            <img src="{{ url_for('static', filename='imagens/info-calor.png') }}" alt="Onda de Calor">
+        </div>
+    {% elif risco == "Tempestade com Ventos Fortes" %}
+        <div class="bloco-risco">
+            <h2>🌪️ O que fazer em caso de Tempestade</h2>
+            <img src="{{ url_for('static', filename='imagens/info-tempestade.png') }}" alt="Imagem Tempestade">
             <ul>
-                <li>Beba água constantemente.</li>
-                <li>Evite exposição direta ao sol entre 10h e 16h.</li>
-                <li>Cuide de idosos e crianças.</li>
-            </ul>
-            <p><strong>Fonte:</strong> Análise de Risco Climático, p. 26–27</p>
-
-            <h3>☀️ Seca Prolongada</h3>
-            <img src="{{ url_for('static', filename='imagens/info-seca.png') }}" alt="Seca">
-            <ul>
-                <li>Economize água.</li>
-                <li>Evite queimadas.</li>
-                <li>Proteja a vegetação local.</li>
-            </ul>
-            <p><strong>Fonte:</strong> ARVC POA, p. 22–23</p>
-
-            <h3>🌪️ Tempestade com Ventos Fortes</h3>
-            <img src="{{ url_for('static', filename='imagens/info-tempestade.png') }}" alt="Tempestade">
-            <ul>
-                <li>Feche portas e janelas.</li>
-                <li>Fique longe de árvores e postes.</li>
-                <li>Desligue aparelhos elétricos.</li>
+                <li>Permaneça em local fechado, longe de janelas e árvores.</li>
+                <li>Desligue aparelhos elétricos e mantenha-se informado.</li>
             </ul>
             <p><strong>Fonte:</strong> Anexo Riscos Climáticos, p. 36</p>
         </div>
+    {% elif risco == "Onda de Calor" %}
+        <div class="bloco-risco">
+            <h2>🌡️ O que fazer em caso de Onda de Calor</h2>
+            <img src="{{ url_for('static', filename='imagens/info-calor.png') }}" alt="Imagem Onda de Calor">
+            <ul>
+                <li>Beba água com frequência.</li>
+                <li>Evite sair durante o pico do calor.</li>
+                <li>Cuide especialmente de idosos e crianças.</li>
+            </ul>
+            <p><strong>Fonte:</strong> Análise de Risco Climático, p. 26–27</p>
+        </div>
+    {% elif risco == "Seca Prolongada" %}
+        <div class="bloco-risco">
+            <h2>☀️ O que fazer em caso de Seca</h2>
+            <img src="{{ url_for('static', filename='imagens/info-seca.png') }}" alt="Imagem Seca">
+            <ul>
+                <li>Evite o desperdício de água.</li>
+                <li>Reaproveite água sempre que possível.</li>
+                <li>Evite queimadas e preserve a vegetação.</li>
+            </ul>
+            <p><strong>Fonte:</strong> ARVC POA, p. 22–23</p>
+        </div>
+    {% endif %}
 
-        <a href="/">Nova avaliação</a>
-    </div>
+    <a href="/">Nova avaliação</a>
+</div>
 </body>
 </html>
