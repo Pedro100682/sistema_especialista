@@ -17,13 +17,14 @@
             text-align: center;
         }
         .header img {
-            height: 80px;
+            height: 100px;
             display: block;
             margin: 0 auto 10px auto;
         }
-        .header h1 {
+        .header .title {
             font-size: 20px;
-            margin: 0;
+            font-weight: bold;
+            margin-top: 10px;
         }
         .container {
             max-width: 800px;
@@ -61,8 +62,10 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="Logo">
-        <h1>Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas</h1>
+        <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo do Sistema">
+        <div class="title">
+            SISTEMA ESPECIALISTA PARA DETECÇÃO DE EVENTOS CLIMÁTICOS E RECOMENDAÇÕES DE MEDIDAS
+        </div>
     </div>
 
     <div class="container">
