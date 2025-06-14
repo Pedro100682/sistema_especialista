@@ -54,3 +54,20 @@ a {
     color: #00796b;
 }
 
+.header {
+    background-color: #d6ecfa;
+    color: #003366;
+    padding: 30px 20px 20px 20px;
+    text-align: center;
+}
+
+.header img {
+    height: 120px;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+.header .titulo {
+    font-size: 18px;
+    font-weight: bold;
+}
