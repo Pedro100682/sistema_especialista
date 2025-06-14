@@ -52,12 +52,43 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .bloco-extra {
+            background-color: #f0f8ff;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .bloco-extra h3 {
+            color: #003366;
+            margin-top: 30px;
+        }
+
+        .bloco-extra img {
+            width: 100%;
+            max-width: 600px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .bloco-extra ul {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            padding-left: 20px;
+        }
+
+        .bloco-extra p {
+            font-size: 14px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Resultado da Avaliação</h1>
-        
+
         <div class="alerta alerta-{{ cor_alerta }}">
             {{ texto_alerta }}
         </div>
@@ -66,6 +97,55 @@
 
         <h2>Recomendações:</h2>
         <p>{{ recomendacao|safe }}</p>
+
+        <div class="bloco-extra">
+            <h2>📚 Ações Complementares por Tipo de Risco</h2>
+            <p>Veja abaixo dicas práticas e materiais de apoio para se preparar e agir em situações de risco climático:</p>
+
+            <h3>🌊 Inundação</h3>
+            <img src="{{ url_for('static', filename='imagens/info-inundacao.png') }}" alt="Inundação">
+            <ul>
+                <li>Evacue para áreas seguras e altas.</li>
+                <li>Leve documentos, água, remédios e mochila de emergência.</li>
+                <li>Não atravesse ruas alagadas.</li>
+            </ul>
+            <p><strong>Fonte:</strong> Anexo Riscos Climáticos, p. 33–34</p>
+
+            <h3>🧱 Deslizamento de Terra</h3>
+            <img src="{{ url_for('static', filename='imagens/info-deslizamento.png') }}" alt="Deslizamento">
+            <ul>
+                <li>Evacue casas em encostas ao notar rachaduras no solo.</li>
+                <li>Evite permanecer em barrancos instáveis após chuva.</li>
+            </ul>
+            <p><strong>Fonte:</strong> ARVC POA, p. 60</p>
+
+            <h3>🌡️ Onda de Calor</h3>
+            <img src="{{ url_for('static', filename='imagens/info-calor.png') }}" alt="Onda de Calor">
+            <ul>
+                <li>Beba água constantemente.</li>
+                <li>Evite exposição direta ao sol entre 10h e 16h.</li>
+                <li>Cuide de idosos e crianças.</li>
+            </ul>
+            <p><strong>Fonte:</strong> Análise de Risco Climático, p. 26–27</p>
+
+            <h3>☀️ Seca Prolongada</h3>
+            <img src="{{ url_for('static', filename='imagens/info-seca.png') }}" alt="Seca">
+            <ul>
+                <li>Economize água.</li>
+                <li>Evite queimadas.</li>
+                <li>Proteja a vegetação local.</li>
+            </ul>
+            <p><strong>Fonte:</strong> ARVC POA, p. 22–23</p>
+
+            <h3>🌪️ Tempestade com Ventos Fortes</h3>
+            <img src="{{ url_for('static', filename='imagens/info-tempestade.png') }}" alt="Tempestade">
+            <ul>
+                <li>Feche portas e janelas.</li>
+                <li>Fique longe de árvores e postes.</li>
+                <li>Desligue aparelhos elétricos.</li>
+            </ul>
+            <p><strong>Fonte:</strong> Anexo Riscos Climáticos, p. 36</p>
+        </div>
 
         <a href="/">Nova avaliação</a>
     </div>
