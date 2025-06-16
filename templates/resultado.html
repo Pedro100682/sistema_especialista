@@ -84,15 +84,27 @@
     </style>
 </head>
 <body>
-    <div class="header">
-    <div class="logo-esquerda">
-        <img src="{{ url_for('static', filename='imagens/unisc.jpg') }}" alt="Logo UNISC">
-    </div>
-    <div class="logo-central">
-        <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo do Sistema">
-        <div class="titulo">Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas</div>
+    <div class="header" style="background-color: #b3d9ff; padding: 20px 0;">
+    <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto;">
+        
+        <!-- Logo da UNISC à esquerda -->
+        <div style="flex: 1; text-align: left; padding-left: 20px;">
+            <img src="{{ url_for('static', filename='imagens/unisc.jpg') }}" alt="Logo Unisc" style="height: 80px;">
+        </div>
+
+        <!-- Logo do Sistema no centro -->
+        <div style="flex: 1; text-align: center;">
+            <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo Sistema Especialista" style="height: 160px;">
+            <div class="titulo" style="margin-top: 10px; font-weight: bold; color: black;">
+                Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas
+            </div>
+        </div>
+
+        <!-- Espaço vazio à direita para balancear -->
+        <div style="flex: 1;"></div>
     </div>
 </div>
+
 
 <div class="container">
     <h1>Resultado da Avaliação</h1>
