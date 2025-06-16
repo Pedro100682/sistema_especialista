@@ -77,8 +77,19 @@
 <body>
 
 <div class="header">
-    <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo do Sistema">
-    <div class="titulo">Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas</div>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <!-- Logo Unisc -->
+        <img src="{{ url_for('static', filename='imagens/unisc.jpg') }}" alt="Logo Parceiro" style="height: 80px; margin-left: 20px;">
+
+        <!-- Logo Sistema Especialista -->
+        <div style="text-align: center; flex-grow: 1;">
+            <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo do Sistema" style="height: 160px;">
+            <div class="titulo" style="margin-top: 10px;">Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas</div>
+        </div>
+
+        <!-- Espaço vazio no lado direito para balancear o layout -->
+        <div style="width: 80px; margin-right: 20px;"></div>
+    </div>
 </div>
 
 
