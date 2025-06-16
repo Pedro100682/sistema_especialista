@@ -12,96 +12,105 @@ def index():
 def perguntas():
     return render_template('perguntas.html')
 
-
 @app.route('/avaliar', methods=['POST'])
 def avaliar():
     try:
-        # Captura das respostas do formulário (17 perguntas)
         p = {f'p{i}': request.form.get(f'p{i}', '') for i in range(1, 18)}
 
-        # Regras de decisão para avaliação de risco
         if p['p2'] == 'Não há rio por perto':
             risco = "Nenhum risco hídrico direto"
-            recomendacao = """- Apesar da ausência de rios ou córregos por perto, monitore chuvas fortes.<br>
-                              - Continue atento a alagamentos e outros sinais de risco."""
+            recomendacao = """- Monitore chuvas intensas mesmo sem rios por perto.<br>
+                              - Fique atento a sinais de alagamento ou solo encharcado.<br>
+                              - Mantenha caminhos de escoamento desobstruídos."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
 
         elif p['p9'] == 'Não sei':
             risco = "Risco Potencial (incerteza sobre o relevo)"
-            recomendacao = """- É importante saber se sua casa está em área de risco.<br>
-                              - Reforce a preparação e monitore alertas oficiais."""
+            recomendacao = """- Busque informações com a Defesa Civil sobre o relevo do local.<br>
+                              - Evite permanecer em áreas baixas ou inclinadas durante chuvas.<br>
+                              - Mantenha rota de evacuação planejada."""
             cor_alerta = "laranja"
             texto_alerta = "ALERTA ALTO: Esteja preparado"
 
         elif p['p1'] == 'Sim' and p['p2'] == 'Sim' and p['p8'] == 'Sim' and p['p9'] == 'Sim':
             risco = "Inundação Fluvial"
-            recomendacao = """- Saia de casa antes da água subir e vá para um local seguro.<br>
-                              - Leve documentos, remédios, roupas e água.<br>
-                              - Não tente atravessar áreas alagadas."""
+            recomendacao = """- Saia imediatamente para local alto e seguro.<br>
+                              - Leve sua mochila de emergência com itens essenciais.<br>
+                              - Não atravesse áreas alagadas — busque rotas alternativas seguras.<br>
+                              - Informe vizinhos e acompanhe alertas oficiais."""
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
 
         elif p['p1'] == 'Sim' and p['p3'] == 'Sim' and p['p4'] == 'Sim' and p['p11'] == 'Sim':
             risco = "Inundação Pluvial"
-            recomendacao = """- Saia imediatamente se sua rua costuma alagar.<br>
-                              - Feche gás e desligue energia antes de sair.<br>
-                              - Ajude vizinhos com dificuldades."""
+            recomendacao = """- Abandone a residência caso o alagamento avance.<br>
+                              - Desligue energia e gás antes de sair.<br>
+                              - Use rotas seguras e evite contato com a água contaminada.<br>
+                              - Auxilie crianças, idosos ou pessoas com dificuldades de locomoção."""
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
 
         elif (p['p1'] == 'Sim' and p['p10'] == 'Sim') or (p['p1'] == 'Sim' and p['p9'] == 'Sim' and 'encosta' in p['p9'].lower()):
             risco = "Deslizamento de Terra"
-            recomendacao = """- Saia da casa se chover forte por horas ou houver risco em encostas.<br>
-                              - Evacue ao menor sinal de rachaduras ou trincas no solo.<br>
-                              - Vá para um abrigo seguro imediatamente."""
+            recomendacao = """- Ao menor sinal de rachaduras ou inclinação no terreno, evacue a casa.<br>
+                              - Busque abrigo em local seguro, longe de encostas.<br>
+                              - Nunca durma em áreas de risco durante chuvas prolongadas.<br>
+                              - Mantenha sacos de areia para contenção de água se necessário."""
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
 
         elif p['p6'] == 'Sim':
             risco = "Tempestade com Ventos Fortes"
-            recomendacao = """- Fique longe de árvores, postes e janelas.<br>
-                              - Desligue aparelhos elétricos.<br>
-                              - Busque abrigo seguro."""
+            recomendacao = """- Abrigue-se longe de janelas, árvores e postes.<br>
+                              - Desligue aparelhos elétricos e fique longe de tomadas.<br>
+                              - Não use celular conectado à tomada.<br>
+                              - Após a tempestade, verifique estruturas danificadas com cuidado."""
             cor_alerta = "laranja"
             texto_alerta = "ALERTA ALTO: Esteja preparado"
 
         elif p['p5'] == 'Sim' and p['p13'] == 'Sim':
             risco = "Onda de Calor"
-            recomendacao = """- Beba muita água.<br>
-                              - Evite sair no horário de pico de calor.<br>
-                              - Cuide especialmente de idosos e crianças."""
+            recomendacao = """- Beba água regularmente, mesmo sem sede.<br>
+                              - Evite atividades físicas nos horários mais quentes (11h–16h).<br>
+                              - Refresque o ambiente com ventilação natural ou panos molhados.<br>
+                              - Observe sinais de insolação: tontura, pele seca, febre alta."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
 
         elif p['p7'] == 'Sim' and p['p11'] == 'Sim':
             risco = "Seca Prolongada"
-            recomendacao = """- Economize água.<br>
-                              - Proteja plantas e animais.<br>
-                              - Informe-se sobre rodízios de abastecimento."""
+            recomendacao = """- Economize água e reutilize sempre que possível.<br>
+                              - Armazene água potável de forma segura.<br>
+                              - Evite queimadas: o solo seco propaga fogo rapidamente.<br>
+                              - Proteja áreas verdes com cobertura vegetal e irrigação controlada."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
 
         elif [p['p12'], p['p13'], p['p14']].count("Sim") >= 2:
             risco = "Risco Leve (pessoas vulneráveis)"
-            recomendacao = """- Tenha um plano de evacuação.<br>
-                              - Organize uma mochila de emergência.<br>
-                              - Fique atento aos alertas oficiais."""
+            recomendacao = """- Mantenha um plano de evacuação visível e acessível para todos.<br>
+                              - Prepare mochila de emergência com itens de saúde e higiene.<br>
+                              - Combine pontos de encontro e contatos de emergência.<br>
+                              - Auxilie quem tem mais dificuldade de locomoção ou informação."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
 
         elif p['p14'] == 'Sim' and p['p15'] == 'Sim':
             risco = "Risco Leve (alerta recebido)"
-            recomendacao = """- Reforce os cuidados com moradores vulneráveis.<br>
-                              - Revise seus planos de emergência."""
+            recomendacao = """- Siga rigorosamente as instruções da Defesa Civil.<br>
+                              - Confirme que todos os membros da família conhecem os planos de emergência.<br>
+                              - Revise documentos importantes e deixe-os prontos para evacuação.<br>
+                              - Acompanhe atualizações pelos canais oficiais e rádio."""
             cor_alerta = "amarelo"
             texto_alerta = "ALERTA MODERADO: Esteja atento"
 
         else:
             risco = "Nenhum risco imediato"
-            recomendacao = """- Mantenha-se atento às previsões do tempo.<br>
-                              - Mantenha a mochila de emergência preparada.<br>
-                              - Saiba onde buscar abrigo em caso de necessidade."""
+            recomendacao = """- Continue acompanhando as previsões do tempo.<br>
+                              - Mantenha a mochila de emergência abastecida.<br>
+                              - Faça exercícios de evacuação com a família.<br>
+                              - Saiba onde estão os abrigos e contatos de emergência."""
             cor_alerta = "verde"
             texto_alerta = "NORMALIDADE"
 
@@ -111,7 +120,6 @@ def avaliar():
     except Exception as e:
         return f"Erro na avaliação: {e}", 400
 
-# Abre o navegador automaticamente
 def abrir_navegador():
     webbrowser.open("http://127.0.0.1:5000")
 
