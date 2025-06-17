@@ -28,7 +28,7 @@ def avaliar():
 - Fique atento a sinais de alagamento ou solo encharcado.<br>
 - Mantenha caminhos de escoamento desobstruídos."""
             cor_alerta = "amarelo"
-            texto_alerta = "ALERTA MODERADO: Esteja atento"
+            texto_alerta = "ALERTA MODERADO: ESTEJA ATENTO"
 
         elif p['p9'] == 'Não sei':
             risco = "Risco Potencial (incerteza sobre o relevo)"
@@ -36,7 +36,7 @@ def avaliar():
 - Evite permanecer em áreas baixas ou inclinadas durante chuvas.<br>
 - Mantenha rota de evacuação planejada."""
             cor_alerta = "laranja"
-            texto_alerta = "ALERTA ALTO: Esteja preparado"
+            texto_alerta = "ALERTA ALTO: ESTEJA PREPARADO"
 
         elif p['p1'] == 'Sim' and p['p2'] == 'Sim' and p['p8'] == 'Sim' and p['p9'] == 'Sim':
             risco = "Inundação Fluvial"
@@ -45,7 +45,7 @@ def avaliar():
 - Não atravesse áreas alagadas — busque rotas alternativas seguras.<br>
 - Informe vizinhos e acompanhe alertas oficiais."""
             cor_alerta = "vermelho"
-            texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
+            texto_alerta = "ALERTA MUITO ALTO: TOME UMA ATITUDE"
 
         elif p['p1'] == 'Sim' and p['p3'] == 'Sim' and p['p4'] == 'Sim' and p['p11'] == 'Sim':
             risco = "Inundação Pluvial"
@@ -54,7 +54,7 @@ def avaliar():
 - Use rotas seguras e evite contato com a água contaminada.<br>
 - Auxilie crianças, idosos ou pessoas com dificuldades de locomoção."""
             cor_alerta = "vermelho"
-            texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
+            texto_alerta = "ALERTA MUITO ALTO: TOME UMA ATITUDE"
 
         elif (p['p1'] == 'Sim' and p['p10'] == 'Sim') or (p['p1'] == 'Sim' and p['p9'] == 'Sim' and 'encosta' in p['p9'].lower()):
             risco = "Deslizamento de Terra"
@@ -63,7 +63,7 @@ def avaliar():
 - Nunca durma em áreas de risco durante chuvas prolongadas.<br>
 - Mantenha sacos de areia para contenção de água se necessário."""
             cor_alerta = "vermelho"
-            texto_alerta = "ALERTA MUITO ALTO: Tome uma atitude"
+            texto_alerta = "ALERTA MUITO ALTO: TOME UMA ATITUDE"
 
         elif p['p6'] == 'Sim':
             risco = "Tempestade com Ventos Fortes"
@@ -72,7 +72,7 @@ def avaliar():
 - Não use celular conectado à tomada.<br>
 - Após a tempestade, verifique estruturas danificadas com cuidado."""
             cor_alerta = "laranja"
-            texto_alerta = "ALERTA ALTO: Esteja preparado"
+            texto_alerta = "ALERTA ALTO: ESTEJA PREPARADO"
 
         elif p['p5'] == 'Sim' and p['p13'] == 'Sim':
             risco = "Onda de Calor"
@@ -81,7 +81,7 @@ def avaliar():
 - Refresque o ambiente com ventilação natural ou panos molhados.<br>
 - Observe sinais de insolação: tontura, pele seca, febre alta."""
             cor_alerta = "amarelo"
-            texto_alerta = "ALERTA MODERADO: Esteja atento"
+            texto_alerta = "ALERTA MODERADO: ESTEJA ATENTO"
 
         elif p['p7'] == 'Sim' and p['p11'] == 'Sim':
             risco = "Seca Prolongada"
@@ -90,7 +90,7 @@ def avaliar():
 - Evite queimadas: o solo seco propaga fogo rapidamente.<br>
 - Proteja áreas verdes com cobertura vegetal e irrigação controlada."""
             cor_alerta = "amarelo"
-            texto_alerta = "ALERTA MODERADO: Esteja atento"
+            texto_alerta = "ALERTA MODERADO: ESTEJA ATENTO"
 
         elif [p['p12'], p['p13'], p['p14']].count("Sim") >= 2:
             risco = "Risco Leve (pessoas vulneráveis)"
@@ -99,7 +99,7 @@ def avaliar():
 - Combine pontos de encontro e contatos de emergência.<br>
 - Auxilie quem tem mais dificuldade de locomoção ou informação."""
             cor_alerta = "amarelo"
-            texto_alerta = "ALERTA MODERADO: Esteja atento"
+            texto_alerta = "ALERTA MODERADO: ESTEJA ATENTO"
 
         elif p['p14'] == 'Sim' and p['p15'] == 'Sim':
             risco = "Risco Leve (alerta recebido)"
@@ -108,7 +108,7 @@ def avaliar():
 - Revise documentos importantes e deixe-os prontos para evacuação.<br>
 - Acompanhe atualizações pelos canais oficiais e rádio."""
             cor_alerta = "amarelo"
-            texto_alerta = "ALERTA MODERADO: Esteja atento"
+            texto_alerta = "ALERTA MODERADO: ESTEJA ATENTO"
 
         else:
             risco = "Nenhum risco imediato"
@@ -128,7 +128,7 @@ def avaliar():
 @app.route('/gerar_pdf', methods=['POST'])
 def gerar_pdf():
     risco = request.form['risco']
-    recomendacao = request.form['recomendacao'].replace('<br>', '\n')  # substitui <br> por quebra de linha
+    recomendacao = request.form['recomendacao'].replace('<br>', '\n')
     cor_alerta = request.form['cor_alerta']
     texto_alerta = request.form['texto_alerta']
 
