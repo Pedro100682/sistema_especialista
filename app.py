@@ -12,6 +12,10 @@ def index():
 def perguntas():
     return render_template('perguntas.html')
 
+@app.route('/fim')
+def fim():
+    return render_template('fim.html')
+
 @app.route('/avaliar', methods=['POST'])
 def avaliar():
     try:
