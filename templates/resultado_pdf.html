@@ -2,45 +2,24 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Relatório de Avaliação</title>
+    <title>Resultado PDF</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 30px;
-            background: white;
-            color: #333;
-        }
-        h1 {
-            color: #003366;
-            text-align: center;
-        }
-        .alerta {
-            font-weight: bold;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 20px 0;
-            text-align: center;
-            color: white;
-        }
-        .verde { background-color: #4CAF50; }
-        .amarelo { background-color: #FFC107; color: #000; }
-        .laranja { background-color: #FF9800; }
-        .vermelho { background-color: #F44336; }
-        p {
-            font-size: 16px;
-            line-height: 1.6;
+        body { font-family: Arial, sans-serif; padding: 30px; color: #333; }
+        h1 { color: #003366; }
+        .box {
+            border: 2px solid #0077cc;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Relatório de Risco Climático</h1>
-
-    <div class="alerta {{ cor_alerta }}">
-        {{ texto_alerta }}
+    <h1>Resultado da Avaliação</h1>
+    <div class="box">
+        <p><strong>Risco Identificado:</strong> {{ risco }}</p>
+        <p><strong>Recomendações:</strong></p>
+        <p>{{ recomendacao }}</p>
     </div>
-
-    <p><strong>Risco identificado:</strong> {{ risco }}</p>
-    <p><strong>Recomendações:</strong></p>
-    <p>{{ recomendacao|safe }}</p>
 </body>
 </html>
