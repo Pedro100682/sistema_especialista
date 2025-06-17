@@ -120,10 +120,14 @@
 
     <a href="/">Voltar ao Início do Questionário</a>
 
-    <form action="/gerar_pdf" method="post">
-    <input type="hidden" name="html" id="html-to-pdf">
-    <button type="submit" onclick="document.getElementById('html-to-pdf').value = document.documentElement.outerHTML;">Salvar resultado em PDF</button>
-</form>
+    <form action="{{ url_for('gerar_pdf') }}" method="post">
+        <input type="hidden" name="risco" value="{{ risco }}">
+        <input type="hidden" name="recomendacao" value="{{ recomendacao|safe }}">
+        <input type="hidden" name="cor_alerta" value="{{ cor_alerta }}">
+        <input type="hidden" name="texto_alerta" value="{{ texto_alerta }}">
+        <button type="submit" style="margin-top: 20px;">Salvar resultado em PDF</button>
+    </form>
+
 
     <a href="{{ url_for('fim') }}" class="start-btn" style="margin-top:20px;">Finalizar</a>
 </div>
