@@ -120,6 +120,11 @@
 
     <a href="/">Voltar ao Início do Questionário</a>
 
+    <form action="/gerar_pdf" method="post">
+    <input type="hidden" name="html" id="html-to-pdf">
+    <button type="submit" onclick="document.getElementById('html-to-pdf').value = document.documentElement.outerHTML;">Salvar resultado em PDF</button>
+</form>
+
     <a href="{{ url_for('fim') }}" class="start-btn" style="margin-top:20px;">Finalizar</a>
 </div>
 </body>

@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import threading
 import webbrowser
+import pdfkit
 
 app = Flask(__name__)
 
@@ -118,14 +119,37 @@ def avaliar():
             cor_alerta = "verde"
             texto_alerta = "NORMALIDADE"
 
+        # Salvando os dados para o PDF (sessão, variável global, etc — simples aqui como dicionário)
         return render_template('resultado.html', risco=risco, recomendacao=recomendacao,
                                cor_alerta=cor_alerta, texto_alerta=texto_alerta)
 
     except Exception as e:
         return f"Erro na avaliação: {e}", 400
 
+
+# Rota para gerar PDF a partir da página de resultado
+@app.route('/gerar_pdf', methods=['POST'])
+def gerar_pdf():
+    risco = request.form['risco']
+    recomendacao = request.form['recomendacao']
+    cor_alerta = request.form['cor_alerta']
+    texto_alerta = request.form['texto_alerta']
+
+    rendered = render_template('resultado_pdf.html', risco=risco,
+                               recomendacao=recomendacao,
+                               cor_alerta=cor_alerta,
+                               texto_alerta=texto_alerta)
+
+    pdf = pdfkit.from_string(rendered, False)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = 'attachment; filename=resultado.pdf'
+    return response
+
+
 def abrir_navegador():
     webbrowser.open("http://127.0.0.1:5000")
+
 
 if __name__ == '__main__':
     threading.Timer(1, abrir_navegador).start()
