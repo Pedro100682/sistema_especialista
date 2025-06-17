@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Resultado da Avaliação</title>
+    <title>Resultado</title>
     <style>
         body {
             background-color: #eaf6ff;
@@ -96,7 +96,7 @@
         <div style="flex: 1; text-align: center;">
             <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo Sistema Especialista" style="height: 160px;">
             <div class="titulo" style="margin-top: 10px; font-weight: bold; color: black;">
-                Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas
+                Sistema Especialista de Identificação de Eventos Climáticos e Recomendações de Medidas Preventivas
             </div>
         </div>
 
@@ -118,7 +118,7 @@
     <h2>Recomendações:</h2>
     <p>{{ recomendacao|safe }}</p>
 
-    <a href="/">Nova avaliação</a>
+    <a href="/">Voltar ao Início do Questionário</a>
 </div>
 </body>
 </html>

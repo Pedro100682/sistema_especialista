@@ -101,7 +101,7 @@
         <div style="flex: 1; text-align: center;">
             <img src="{{ url_for('static', filename='imagens/logo_sistema.jpg') }}" alt="Logo Sistema Especialista" style="height: 160px;">
             <div class="titulo" style="margin-top: 10px; font-weight: bold; color: black;">
-                Sistema Especialista para Detecção de Eventos Climáticos e Recomendações de Medidas
+                Sistema Especialista de Identificação de Eventos Climáticos e Recomendações de Medidas Preventivas
             </div>
         </div>
 
@@ -114,7 +114,7 @@
 
 
 <div class="container">
-    <h1>Responda às perguntas abaixo</h1>
+    <h1>Responda as perguntas a seguir</h1>
     <form method="POST" action="/avaliar">
 
         <label>1. Está chovendo muito forte hoje ou nos três últimos dias?</label>
@@ -232,7 +232,7 @@
         </select>
 
         <label>15. Você e sua família sabem para onde ir em caso de emergência?</label>
-        <img src="{{ url_for('static', filename='imagens/15-grafico.jpg') }}">
+        <img src="{{ url_for('static', filename='imagens/15-grafico_correto.jpg') }}">
         <select name="p15" required>
             <option value="" disabled selected>Selecione...</option>
             <option>Sim</option>
@@ -247,7 +247,7 @@
             <option>Não</option>
         </select>
 
-        <button type="submit">Avaliar Risco</button>
+        <button type="submit">Identificar Risco</button>
     </form>
 </div>
 
