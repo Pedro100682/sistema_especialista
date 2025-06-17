@@ -2,24 +2,62 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Resultado PDF</title>
+    <title>Resultado da Avaliação - PDF</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 30px; color: #333; }
-        h1 { color: #003366; }
-        .box {
-            border: 2px solid #0077cc;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #000;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #003366;
+        }
+        .alerta {
             padding: 20px;
             border-radius: 10px;
+            margin: 30px 0;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .alerta-verde { background-color: #4CAF50; }
+        .alerta-amarelo { background-color: #FFC107; color: #000; }
+        .alerta-laranja { background-color: #FF9800; }
+        .alerta-vermelho { background-color: #F44336; }
+        pre {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+        .info {
+            font-size: 18px;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Resultado da Avaliação</h1>
-    <div class="box">
-        <p><strong>Risco Identificado:</strong> {{ risco }}</p>
-        <p><strong>Recomendações:</strong></p>
-        <p>{{ recomendacao }}</p>
+    <div class="container">
+        <h1>Resultado da Avaliação</h1>
+
+        <div class="alerta alerta-{{ cor_alerta }}">
+            {{ texto_alerta }}
+        </div>
+
+        <div class="info">
+            <strong>Risco Identificado:</strong> {{ risco }}
+        </div>
+
+        <h2>Recomendações:</h2>
+        <pre>{{ recomendacao }}</pre>
     </div>
 </body>
 </html>
