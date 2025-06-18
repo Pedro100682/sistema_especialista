@@ -37,19 +37,9 @@
         .alerta-vermelho { background-color: #F44336; }
         .alerta-roxo { background-color: #800080; }
 
-        p, a {
+        p {
             font-size: 1.1em;
             color: #333;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            text-align: center;
-            color: #0077cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
         }
 
         .header {
@@ -81,29 +71,23 @@
             color: #000;
         }
 
-        .acoes {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .acoes form,
-        .acoes a {
-            display: inline-block;
-            margin: 10px 15px;
-        }
-
-        button {
-            background-color: #0077cc;
+        .botao-acao {
+            background-color: #007bff;
             color: white;
+            padding: 12px 20px;
+            margin: 10px auto;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
+            border-radius: 6px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            width: 250px;
             font-size: 16px;
+            cursor: pointer;
         }
-
-        button:hover {
-            background-color: #005fa3;
+        .botao-acao:hover {
+            background-color: #0056b3;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -137,40 +121,24 @@
     <p>{{ recomendacao|safe }}</p>
 
     <!-- Botões de ação -->
-    <style>
-    .botao-acao {
-        background-color: #007bff;
-        color: white;
-        padding: 12px 20px;
-        margin: 10px auto;
-        border: none;
-        border-radius: 6px;
-        text-align: center;
-        text-decoration: none;
-        display: block;
-        width: 250px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-.botao-acao:hover {
-    background-color: #0056b3;
-}
+    <div style="text-align: center; margin-top: 40px;">
+        <form action="/gerar_pdf" method="post">
+            <input type="hidden" name="risco" value="{{ risco }}">
+            <input type="hidden" name="recomendacao" value="{{ recomendacao|striptags }}">
+            <input type="hidden" name="cor_alerta" value="{{ cor_alerta }}">
+            <input type="hidden" name="texto_alerta" value="{{ texto_alerta }}">
+            <button type="submit" class="botao-acao">Salvar resultado em PDF</button>
+        </form>
 
-</style>
+        <form action="/" method="get">
+            <button type="submit" class="botao-acao">Voltar ao Início do Questionário</button>
+        </form>
 
-<div style="text-align: center; margin-top: 40px;">
-    <form action="/gerar_pdf" method="post">
-        <input type="hidden" name="risco" value="{{ risco }}">
-        <input type="hidden" name="recomendacao" value="{{ recomendacao|striptags }}">
-        <input type="hidden" name="cor_alerta" value="{{ cor_alerta }}">
-        <input type="hidden" name="texto_alerta" value="{{ texto_alerta }}">
-        <button type="submit" class="botao-acao">Salvar resultado em PDF</button>
-    </form>
-
-    <a href="/" class="botao-acao">Voltar ao Início do Questionário</a>
-    <a href="/fim" class="botao-acao">Finalizar</a>
+        <form action="/fim" method="get">
+            <button type="submit" class="botao-acao">Finalizar</button>
+        </form>
+    </div>
 </div>
-
 
 </body>
 </html>
