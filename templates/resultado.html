@@ -137,18 +137,39 @@
     <p>{{ recomendacao|safe }}</p>
 
     <!-- Botões de ação -->
-    <div class="acoes">
-        <form action="/gerar_pdf" method="post">
-            <input type="hidden" name="risco" value="{{ risco }}">
-            <input type="hidden" name="recomendacao" value="{{ recomendacao|striptags }}">
-            <input type="hidden" name="cor_alerta" value="{{ cor_alerta }}">
-            <input type="hidden" name="texto_alerta" value="{{ texto_alerta }}">
-            <button type="submit">Salvar resultado em PDF</button>
-        </form>
+    <style>
+    .botao-acao {
+        display: block;
+        width: 250px;
+        margin: 10px auto;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .botao-acao:hover {
+        background-color: #0056b3;
+    }
+</style>
 
-        <a href="/">Voltar ao Início do Questionário</a>
-        <a href="/fim">Finalizar</a>
-    </div>
+<div style="text-align: center; margin-top: 40px;">
+    <form action="/gerar_pdf" method="post">
+        <input type="hidden" name="risco" value="{{ risco }}">
+        <input type="hidden" name="recomendacao" value="{{ recomendacao|striptags }}">
+        <input type="hidden" name="cor_alerta" value="{{ cor_alerta }}">
+        <input type="hidden" name="texto_alerta" value="{{ texto_alerta }}">
+        <button type="submit" class="botao-acao">Salvar resultado em PDF</button>
+    </form>
+    
+    <a href="/" class="botao-acao">Voltar ao Início do Questionário</a>
+    <a href="/fim" class="botao-acao">Finalizar</a>
+</div>
+
 </div>
 
 </body>
