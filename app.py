@@ -23,14 +23,19 @@ def avaliar():
         p = {f'p{i}': request.form.get(f'p{i}', '') for i in range(1, 18)}
 
         # ALERTA ROXO
-        if all(p[str(i)] == 'Sim' for i in [1, 2, 8, 9, 12, 13]):
-            risco = "Risco Muito Alto com Vulnerabilidades Sociais"
-            recomendacao = """- Procure abrigo imediatamente em local seguro e elevado.<br>
-- Leve documentos, remédios e itens essenciais.<br>
-- Informe vizinhos e ajude quem tem dificuldades.<br>
-- Siga instruções da Defesa Civil com urgência."""
+                # ALERTA ROXO: Condições de risco extremo + vulnerabilidade social e ambiental
+        if (p['p1'] == 'Sim' and p['p2'] == 'Sim' and p['p3'] == 'Sim' and p['p4'] == 'Sim'
+              and p['p6'] == 'Sim' and p['p8'] == 'Sim' and p['p9'] == 'Sim'
+              and p['p14'] == 'Sim' and p['p15'] == 'Não'):
+            risco = "Risco Crítico por Condições Combinadas"
+            recomendacao = """- Evacue imediatamente e busque local seguro.<br>
+                - Leve sua mochila de emergência com documentos e itens essenciais.<br>
+                - Ajude moradores com dificuldade de mobilidade.<br>
+                - Fique atento aos alertas da Defesa Civil e siga as instruções.<br>
+                - Evite retornar à residência antes de liberação oficial."""
             cor_alerta = "roxo"
-            texto_alerta = "ALERTA EXTREMO: RISCO GRAVE À VIDA"
+            texto_alerta = "ALERTA CRÍTICO: AJA IMEDIATAMENTE"
+
 
         elif p['p2'] == 'Não há rio por perto':
             risco = "Nenhum risco hídrico direto"
