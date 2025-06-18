@@ -139,22 +139,23 @@
     <!-- Botões de ação -->
     <style>
     .botao-acao {
-        display: block;
-        width: 250px;
-        margin: 10px auto;
-        padding: 12px;
         background-color: #007bff;
         color: white;
+        padding: 12px 20px;
+        margin: 10px auto;
         border: none;
         border-radius: 6px;
-        font-size: 16px;
         text-align: center;
         text-decoration: none;
+        display: block;
+        width: 250px;
+        font-size: 16px;
         cursor: pointer;
     }
-    .botao-acao:hover {
-        background-color: #0056b3;
-    }
+.botao-acao:hover {
+    background-color: #0056b3;
+}
+
 </style>
 
 <div style="text-align: center; margin-top: 40px;">
@@ -165,12 +166,11 @@
         <input type="hidden" name="texto_alerta" value="{{ texto_alerta }}">
         <button type="submit" class="botao-acao">Salvar resultado em PDF</button>
     </form>
-    
+
     <a href="/" class="botao-acao">Voltar ao Início do Questionário</a>
     <a href="/fim" class="botao-acao">Finalizar</a>
 </div>
 
-</div>
 
 </body>
 </html>
