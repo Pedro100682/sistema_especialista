@@ -89,6 +89,27 @@
             background-color: #0056b3;
             text-decoration: none;
         }
+
+        .materiais {
+            margin-top: 40px;
+        }
+
+        .materiais ul {
+            padding-left: 20px;
+        }
+
+        .materiais li {
+            margin-bottom: 10px;
+        }
+
+        .materiais a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        .materiais a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -119,6 +140,19 @@
 
     <h2>Recomendações:</h2>
     <p>{{ recomendacao|safe }}</p>
+
+    <!-- Materiais Complementares -->
+    <div class="materiais">
+        <h2>📘 Materiais Complementares</h2>
+        <ul>
+            <li><a href="{{ url_for('static', filename='docs/Analise_Risco_ Mudanca_Clima.pdf') }}" target="_blank">Método de Análise Participativa de Risco à Mudança do Clima</a></li>
+            <li><a href="{{ url_for('static', filename='docs/anexo-riscos-climaticos-1.pdf') }}" target="_blank">Anexo de Riscos Climáticos – Guia de Infraestrutura</a></li>
+            <li><a href="{{ url_for('static', filename='docs/P1_PLAC_PlanoTrabalho.pdf') }}" target="_blank">Plano de Ação Climática de Porto Alegre (Plano de Trabalho)</a></li>
+            <li><a href="{{ url_for('static', filename='docs/PMPOA23A_231116_P3_Relatorio_ARVC_V2.0 (1).pdf') }}" target="_blank">Relatório de Análise de Riscos e Vulnerabilidades Climáticas (ARVC)</a></li>
+            <li><a href="{{ url_for('static', filename='docs/RISCO-CLIMATICO.pdf') }}" target="_blank">Apresentação sobre Riscos Climáticos – Omar Cardoso</a></li>
+            <li><a href="{{ url_for('static', filename='docs/Sites-Variáveis (1).docx') }}" target="_blank">Lista de Sites e Variáveis de Risco Climático</a></li>
+        </ul>
+    </div>
 
     <!-- Botões de ação -->
     <div style="text-align: center; margin-top: 40px;">
