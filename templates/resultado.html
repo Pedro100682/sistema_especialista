@@ -141,18 +141,6 @@
     <h2>Recomendações:</h2>
     <p>{{ recomendacao|safe }}</p>
 
-    <!-- Materiais Complementares -->
-    <div class="materiais">
-        <h2>📘 Materiais Complementares</h2>
-        <ul>
-            <li><a href="{{ url_for('static', filename='docs/Analise_Risco_ Mudanca_Clima.pdf') }}" target="_blank">Método de Análise Participativa de Risco à Mudança do Clima</a></li>
-            <li><a href="{{ url_for('static', filename='docs/anexo-riscos-climaticos-1.pdf') }}" target="_blank">Anexo de Riscos Climáticos – Guia de Infraestrutura</a></li>
-            <li><a href="{{ url_for('static', filename='docs/P1_PLAC_PlanoTrabalho.pdf') }}" target="_blank">Plano de Ação Climática de Porto Alegre (Plano de Trabalho)</a></li>
-            <li><a href="{{ url_for('static', filename='docs/PMPOA23A_231116_P3_Relatorio_ARVC_V2.0 (1).pdf') }}" target="_blank">Relatório de Análise de Riscos e Vulnerabilidades Climáticas (ARVC)</a></li>
-            <li><a href="{{ url_for('static', filename='docs/RISCO-CLIMATICO.pdf') }}" target="_blank">Apresentação sobre Riscos Climáticos – Omar Cardoso</a></li>
-        </ul>
-    </div>
-
     <!-- Botões de ação -->
     <div style="text-align: center; margin-top: 40px;">
         <form action="/gerar_pdf" method="post">
@@ -171,6 +159,19 @@
             <button type="submit" class="botao-acao">Finalizar</button>
         </form>
     </div>
+
+    <!-- Materiais Complementares -->
+    <div class="materiais">
+        <h2>📘 Materiais Complementares</h2>
+        <ul>
+            <li><a href="{{ url_for('static', filename='docs/Analise_Risco_ Mudanca_Clima.pdf') }}" target="_blank">Método de Análise Participativa de Risco à Mudança do Clima</a></li>
+            <li><a href="{{ url_for('static', filename='docs/anexo-riscos-climaticos-1.pdf') }}" target="_blank">Anexo de Riscos Climáticos – Guia de Infraestrutura</a></li>
+            <li><a href="{{ url_for('static', filename='docs/P1_PLAC_PlanoTrabalho.pdf') }}" target="_blank">Plano de Ação Climática de Porto Alegre (Plano de Trabalho)</a></li>
+            <li><a href="{{ url_for('static', filename='docs/PMPOA23A_231116_P3_Relatorio_ARVC_V2.0 (1).pdf') }}" target="_blank">Relatório de Análise de Riscos e Vulnerabilidades Climáticas (ARVC)</a></li>
+            <li><a href="{{ url_for('static', filename='docs/RISCO-CLIMATICO.pdf') }}" target="_blank">Apresentação sobre Riscos Climáticos – Omar Cardoso</a></li>
+        </ul>
+    </div>
+
 </div>
 
 </body>
