@@ -110,6 +110,28 @@
         .materiais a:hover {
             text-decoration: underline;
         }
+
+        .emergencia {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+
+        .emergencia h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+
+        .emergencia ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .emergencia li {
+            padding: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -169,6 +191,18 @@
             <li><a href="{{ url_for('static', filename='docs/P1_PLAC_PlanoTrabalho.pdf') }}" target="_blank">Plano de Ação Climática de Porto Alegre (Plano de Trabalho)</a></li>
             <li><a href="{{ url_for('static', filename='docs/PMPOA23A_231116_P3_Relatorio_ARVC_V2.0 (1).pdf') }}" target="_blank">Relatório de Análise de Riscos e Vulnerabilidades Climáticas (ARVC)</a></li>
             <li><a href="{{ url_for('static', filename='docs/RISCO-CLIMATICO.pdf') }}" target="_blank">Apresentação sobre Riscos Climáticos – Omar Cardoso</a></li>
+        </ul>
+    </div>
+
+    <!-- Contatos de Emergência -->
+    <div class="emergencia">
+        <h3>📞 Contatos de Emergência</h3>
+        <ul>
+            <li><strong>Polícia:</strong> 190</li>
+            <li><strong>Bombeiros:</strong> 193</li>
+            <li><strong>Ambulância (SAMU):</strong> 192</li>
+            <li><strong>Defesa Civil:</strong> 199</li>
+            <li><strong>Disque Denúncia:</strong> 181</li>
         </ul>
     </div>
 
