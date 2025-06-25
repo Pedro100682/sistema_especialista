@@ -5,7 +5,6 @@ import webbrowser
 
 app = Flask(__name__, static_folder='static')
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -21,22 +20,19 @@ def fim():
 @app.route('/avaliar', methods=['POST'])
 def avaliar():
     try:
-        p = {f'p{i}': request.form.get(f'p{i}', '') for i in range(1, 18)}
+        p = {f'p{i}': request.form.get(f'p{i}', '') for i in range(1, 17)}
 
-        # ALERTA ROXO
-                # ALERTA ROXO: Condições de risco extremo + vulnerabilidade social e ambiental
         if (p['p1'] == 'Sim' and p['p2'] == 'Sim' and p['p3'] == 'Sim' and p['p4'] == 'Sim'
-              and p['p6'] == 'Sim' and p['p8'] == 'Sim' and p['p9'] == 'Sim'
-              and p['p14'] == 'Sim' and p['p15'] == 'Não'):
+            and p['p6'] == 'Sim' and p['p8'] == 'Sim' and p['p9'] == 'Sim'
+            and p['p14'] == 'Sim' and p['p15'] == 'Não'):
             risco = "Risco Crítico por Condições Combinadas"
             recomendacao = """- Evacue imediatamente e busque local seguro.<br>
-                - Leve sua mochila de emergência com documentos e itens essenciais.<br>
-                - Ajude moradores com dificuldade de mobilidade.<br>
-                - Fique atento aos alertas da Defesa Civil e siga as instruções.<br>
-                - Evite retornar à residência antes de liberação oficial."""
+- Leve sua mochila de emergência com documentos e itens essenciais.<br>
+- Ajude moradores com dificuldade de mobilidade.<br>
+- Fique atento aos alertas da Defesa Civil e siga as instruções.<br>
+- Evite retornar à residência antes de liberação oficial."""
             cor_alerta = "roxo"
             texto_alerta = "ALERTA CRÍTICO: AJA IMEDIATAMENTE"
-
 
         elif p['p2'] == 'Não há rio por perto':
             risco = "Nenhum risco hídrico direto"
@@ -72,7 +68,7 @@ def avaliar():
             cor_alerta = "vermelho"
             texto_alerta = "ALERTA MUITO ALTO: TOME UMA ATITUDE"
 
-        elif (p['p1'] == 'Sim' and p['p10'] == 'Sim') or (p['p1'] == 'Sim' and p['p9'] == 'Sim' and 'encosta' in p['p9'].lower()):
+        elif p['p1'] == 'Sim' and p['p10'] == 'Sim':
             risco = "Deslizamento de Terra"
             recomendacao = """- Ao menor sinal de rachaduras ou inclinação no terreno, evacue a casa.<br>
 - Busque abrigo em local seguro, longe de encostas.<br>
